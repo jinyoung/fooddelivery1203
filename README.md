@@ -14,7 +14,7 @@ docker-compose up
 cd infra
 docker-compose exec -it kafka /bin/bash
 cd /bin
-./kafka-console-consumer --bootstrap-server localhost:9092 --topic
+./kafka-console-consumer --bootstrap-server localhost:9092 --topic fooddelivery -from-beginning
 ```
 
 ## Run the backend micro-services
@@ -36,7 +36,7 @@ mvn spring-boot:run
 ## Test by API
 - order
 ```
- http :8088/orders id="id" itemId="itemId" customerId="customerId" address="address" 
+ http :8088/orders itemId=1 customerId="customerId" address="address" 
 ```
 - storeowner
 ```

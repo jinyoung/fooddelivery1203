@@ -1,6 +1,9 @@
 package fooddelivery.domain;
 
 import fooddelivery.RiderApplication;
+import fooddelivery.external.Order;
+import fooddelivery.external.OrderService;
+
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
@@ -44,7 +47,7 @@ public class Delivery {
     //>>> Clean Arch / Port Method
     //<<< Clean Arch / Port Method
     public void accept(AcceptCommand acceptCommand) {
-        //implement business logic here:
+        
 
         DeliveryAccepted deliveryAccepted = new DeliveryAccepted(this);
         deliveryAccepted.publishAfterCommit();
@@ -56,11 +59,16 @@ public class Delivery {
     public static void 배달목록에추가(Cooked cooked) {
         //implement business logic here:
 
-        /** Example 1:  new item 
+        /** Example 1:  new item        */
         Delivery delivery = new Delivery();
+
+        OrderService orderService = RiderApplication.applicationContext.getBean(OrderService.class);
+        Order order = orderService.getOrder(cooked.getOrderId());
+        delivery.setAddress(order.getAddress());
+
         repository().save(delivery);
 
-        */
+ 
 
         /** Example 2:  finding and process
         

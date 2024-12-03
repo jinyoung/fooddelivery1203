@@ -35,7 +35,7 @@ public class Cook {
 
     //<<< Clean Arch / Port Method
     public void finishCook() {
-        //implement business logic here:
+        setStatus("조리완료됨");
 
         Cooked cooked = new Cooked(this);
         cooked.publishAfterCommit();
@@ -45,24 +45,12 @@ public class Cook {
 
     //<<< Clean Arch / Port Method
     public static void 주문목록에추가(OrderPlaced orderPlaced) {
-        //implement business logic here:
-
-        /** Example 1:  new item 
-        Cook cook = new Cook();
-        repository().save(cook);
-
-        */
-
-        /** Example 2:  finding and process
         
-        repository().findById(orderPlaced.get???()).ifPresent(cook->{
-            
-            cook // do something
-            repository().save(cook);
-
-
-         });
-        */
+        Cook cook = new Cook();
+        cook.setFoodId(orderPlaced.getItemId().toString()); // anti-corruption
+        cook.setOrderId(orderPlaced.getId());
+        cook.setStatus("수락됨");
+        repository().save(cook);
 
     }
     //>>> Clean Arch / Port Method

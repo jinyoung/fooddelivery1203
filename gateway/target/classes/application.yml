@@ -28,7 +28,7 @@ spring:
         - id: marketing
           uri: http://localhost:8086
           predicates:
-            - Path=, 
+            - Path=/dashboards/**, 
         - id: frontend
           uri: http://localhost:8080
           predicates:
