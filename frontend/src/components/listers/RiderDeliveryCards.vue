@@ -104,9 +104,10 @@
             me.values = temp.data._embedded.deliveries;
             
             me.newValue = {
-                'address': '',
                 'customerPhoneNumber': '',
                 'orderId': '',
+                'status': '',
+                'address': {},
             }
         },
         methods:{

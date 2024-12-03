@@ -17,11 +17,15 @@ public class Delivery {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private String address;
-
     private String customerPhoneNumber;
 
     private String orderId;
+
+    @Enumerated(EnumType.STRING)
+    private Status status;
+
+    @Embedded
+    private Address address;
 
     @PostPersist
     public void onPostPersist() {}
