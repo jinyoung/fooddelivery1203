@@ -44,7 +44,7 @@ mvn spring-boot:run
 ```
 - rider
 ```
- http :8088/deliveries id="id" address="address" customerPhoneNumber="customerPhoneNumber" orderId="orderId" 
+ http :8088/deliveries id="id" customerPhoneNumber="customerPhoneNumber" orderId="orderId" status="status" address="address" 
 ```
 - alarm
 ```

@@ -6,14 +6,13 @@
 
         <v-card-text>
             <div>
-                <String label="Address" v-model="item.address" :editMode="editMode" @change="change" />
-            </div>
-            <div>
                 <String label="CustomerPhoneNumber" v-model="item.customerPhoneNumber" :editMode="editMode" @change="change" />
             </div>
             <div>
                 <String label="OrderId" v-model="item.orderId" :editMode="editMode" @change="change" />
             </div>
+            <Status offline label="Status" v-model="item.status" :editMode="false" :key="false" @change="change" />
+            <Address offline label="Address" v-model="item.address" :editMode="false" @change="change" />
         </v-card-text>
 
         <v-card-actions>

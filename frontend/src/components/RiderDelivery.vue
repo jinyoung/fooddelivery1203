@@ -16,9 +16,10 @@
         </v-card-title >        
 
         <v-card-text style="background-color: white;">
-            <String label="Address" v-model="value.address" :editMode="editMode" :inputUI="''"/>
             <String label="CustomerPhoneNumber" v-model="value.customerPhoneNumber" :editMode="editMode" :inputUI="''"/>
             <String label="OrderId" v-model="value.orderId" :editMode="editMode" :inputUI="''"/>
+            <Status offline label="Status" v-model="value.status" :editMode="editMode" @change="change"/>
+            <Address offline label="Address" v-model="value.address" :editMode="editMode" @change="change"/>
         </v-card-text>
 
         <v-card-actions style="background-color: white;">
@@ -101,10 +102,12 @@
 <script>
     const axios = require('axios').default;
 
+    import Address from './vo/Address.vue';
 
     export default {
         name: 'RiderDelivery',
         components:{
+            Address,
         },
         props: {
             value: [Object, String, Number, Boolean, Array],
