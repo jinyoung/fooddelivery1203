@@ -42,7 +42,7 @@ public class Delivery {
 
     //<<< Clean Arch / Port Method
     public void confirmDelivered() {
-        //implement business logic here:
+        setStatus(Status.DELIVERED);
 
         Delivered delivered = new Delivered(this);
         delivered.publishAfterCommit();
@@ -51,7 +51,7 @@ public class Delivery {
     //>>> Clean Arch / Port Method
     //<<< Clean Arch / Port Method
     public void accept(AcceptCommand acceptCommand) {
-        
+        setStatus(Status.STARTED);
 
         DeliveryAccepted deliveryAccepted = new DeliveryAccepted(this);
         deliveryAccepted.publishAfterCommit();
@@ -68,7 +68,9 @@ public class Delivery {
 
         OrderService orderService = RiderApplication.applicationContext.getBean(OrderService.class);
         Order order = orderService.getOrder(cooked.getOrderId());
-        delivery.setAddress(order.getAddress());
+        Address address = new Address();
+        address.setCity(order.getAddress());
+        delivery.setAddress(address);
 
         repository().save(delivery);
 
